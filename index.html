@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Brenda Iradukunda — Developer Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #E2C47A;
+    --gold-dim: #8A6A28;
+    --ink: #0D0D0D;
+    --ink-2: #1A1A1A;
+    --ink-3: #262626;
+    --surface: #141414;
+    --muted: #6B6B6B;
+    --faint: #2A2A2A;
+    --white: #F7F4EE;
+    --accent: #C9A84C;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--ink);
+    color: var(--white);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.2rem 4rem;
+    background: rgba(13,13,13,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(201,168,76,0.12);
+  }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem; font-weight: 500; letter-spacing: 0.08em;
+    color: var(--gold); text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 2.5rem; }
+  .nav-links a {
+    font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--muted); text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding: 0 4rem 6rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 70% 40%, rgba(201,168,76,0.06) 0%, transparent 70%),
+                radial-gradient(ellipse 40% 50% at 20% 80%, rgba(201,168,76,0.04) 0%, transparent 60%);
+  }
+  .hero-line {
+    position: absolute; top: 0; left: 4rem;
+    width: 1px; height: 100%;
+    background: linear-gradient(to bottom, transparent, rgba(201,168,76,0.2) 30%, rgba(201,168,76,0.2) 70%, transparent);
+  }
+  .hero-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 1.5rem;
+    display: flex; align-items: center; gap: 1rem;
+  }
+  .hero-eyebrow::before { content: ''; width: 32px; height: 1px; background: var(--gold); }
+  .hero-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3.5rem, 8vw, 7rem);
+    font-weight: 300; line-height: 0.95;
+    letter-spacing: -0.02em;
+    color: var(--white);
+    margin-bottom: 0.3rem;
+  }
+  .hero-name em { font-style: italic; color: var(--gold); }
+  .hero-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.2rem, 2.5vw, 2rem);
+    font-weight: 300; color: var(--muted);
+    margin-bottom: 3rem; letter-spacing: 0.02em;
+  }
+  .hero-actions { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+  .btn-primary {
+    padding: 0.85rem 2.5rem;
+    background: var(--gold);
+    color: var(--ink);
+    font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase;
+    font-weight: 500; text-decoration: none;
+    transition: background 0.2s, transform 0.1s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
+  .btn-outline {
+    padding: 0.85rem 2.5rem;
+    border: 1px solid rgba(201,168,76,0.4);
+    color: var(--gold);
+    font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase;
+    font-weight: 400; text-decoration: none;
+    transition: border-color 0.2s, background 0.2s;
+    display: inline-block;
+  }
+  .btn-outline:hover { border-color: var(--gold); background: rgba(201,168,76,0.06); }
+  .hero-scroll {
+    position: absolute; bottom: 2.5rem; right: 4rem;
+    font-family: 'DM Mono', monospace; font-size: 0.65rem;
+    letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted);
+    writing-mode: vertical-rl; display: flex; align-items: center; gap: 1rem;
+  }
+  .hero-scroll::after { content: ''; width: 1px; height: 48px; background: var(--muted); }
+
+  /* SECTIONS */
+  section { padding: 7rem 4rem; }
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 3.5rem;
+    display: flex; align-items: center; gap: 1rem;
+  }
+  .section-label::after { content: ''; flex: 1; max-width: 60px; height: 1px; background: var(--gold-dim); }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.2rem, 4vw, 3.5rem);
+    font-weight: 300; line-height: 1.1; letter-spacing: -0.01em;
+    margin-bottom: 1.5rem;
+  }
+  .section-title em { font-style: italic; color: var(--gold); }
+
+  /* ABOUT */
+  #about { background: var(--ink-2); }
+  .about-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 6rem; align-items: center; max-width: 1100px;
+  }
+  .about-text p {
+    font-size: 1.05rem; line-height: 1.8; color: #B0ADA6;
+    margin-bottom: 1.4rem;
+  }
+  .about-text strong { color: var(--white); font-weight: 500; }
+  .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  .skill-item {
+    padding: 1.2rem 1.4rem;
+    border: 1px solid var(--faint);
+    border-left: 2px solid var(--gold-dim);
+  }
+  .skill-title { font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.5rem; }
+  .skill-list { font-size: 0.82rem; color: var(--muted); line-height: 1.7; }
+
+  /* PROJECTS */
+  #projects { background: var(--ink); }
+  .projects-list { display: flex; flex-direction: column; gap: 0; }
+  .project-item {
+    display: grid; grid-template-columns: 80px 1fr 1fr;
+    gap: 3rem; align-items: start;
+    padding: 3.5rem 0;
+    border-bottom: 1px solid var(--faint);
+    position: relative;
+    transition: background 0.2s;
+  }
+  .project-item:first-child { border-top: 1px solid var(--faint); }
+  .project-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3rem; font-weight: 300; color: rgba(201,168,76,0.15);
+    line-height: 1; padding-top: 0.2rem;
+  }
+  .project-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem; font-weight: 400; letter-spacing: -0.01em;
+    color: var(--white); margin-bottom: 0.6rem;
+  }
+  .project-tagline {
+    font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 1rem;
+  }
+  .project-desc { font-size: 0.9rem; line-height: 1.75; color: #8A8880; }
+  .project-right { padding-top: 0.4rem; }
+  .project-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem; }
+  .tag {
+    font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase;
+    padding: 0.3rem 0.7rem;
+    border: 1px solid var(--faint); color: var(--muted);
+  }
+  .project-relevance {
+    padding: 1rem 1.2rem;
+    background: rgba(201,168,76,0.05);
+    border-left: 2px solid var(--gold-dim);
+  }
+  .relevance-label { font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.4rem; }
+  .relevance-text { font-size: 0.82rem; line-height: 1.6; color: #8A8880; }
+  .project-link {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--gold); text-decoration: none; margin-top: 1rem;
+    transition: gap 0.2s;
+  }
+  .project-link:hover { gap: 0.75rem; }
+  .project-link::after { content: '→'; }
+
+  /* THIM FIT */
+  #thim { background: var(--ink-2); }
+  .fit-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+  .fit-card {
+    padding: 2.5rem 2rem;
+    background: var(--ink-3);
+    transition: background 0.2s;
+  }
+  .fit-card:hover { background: #1E1E1E; }
+  .fit-icon { font-size: 1.5rem; color: var(--gold); margin-bottom: 1.2rem; }
+  .fit-heading { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 400; margin-bottom: 0.8rem; }
+  .fit-body { font-size: 0.85rem; line-height: 1.75; color: #7A7870; }
+
+  /* APPLICATION DECK */
+  #deck { background: var(--ink); }
+  .deck-frame {
+    border: 1px solid var(--faint);
+    background: var(--ink-2);
+    overflow: hidden;
+  }
+  .deck-nav {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1rem 2rem;
+    border-bottom: 1px solid var(--faint);
+    background: var(--ink-3);
+  }
+  .deck-nav-title { font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); }
+  .deck-nav-controls { display: flex; gap: 0.7rem; align-items: center; }
+  .deck-btn {
+    padding: 0.45rem 1.1rem;
+    border: 1px solid var(--faint); background: transparent;
+    color: var(--muted); font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase;
+    cursor: pointer; transition: all 0.15s; font-family: 'DM Sans', sans-serif;
+  }
+  .deck-btn:hover { border-color: var(--gold); color: var(--gold); }
+  .deck-counter { font-family: 'DM Mono', monospace; font-size: 0.7rem; color: var(--muted); min-width: 50px; text-align: center; }
+  .deck-slides { position: relative; }
+  .slide {
+    display: none;
+    min-height: 520px;
+    padding: 4.5rem 5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .slide.active { display: flex; flex-direction: column; justify-content: center; }
+  .slide-bg {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 60% 60% at 80% 20%, rgba(201,168,76,0.05) 0%, transparent 70%);
+  }
+  .slide-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem; letter-spacing: 0.2em; color: var(--gold-dim); margin-bottom: 2rem;
+  }
+  .slide-heading {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 300;
+    line-height: 1.1; letter-spacing: -0.01em; margin-bottom: 1.5rem; position: relative;
+  }
+  .slide-heading em { font-style: italic; color: var(--gold); }
+  .slide-body { font-size: 0.95rem; line-height: 1.8; color: #8A8880; max-width: 680px; position: relative; }
+  .slide-body strong { color: var(--white); font-weight: 500; }
+  .slide-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; position: relative; }
+  .slide-point { padding-left: 1.2rem; border-left: 2px solid var(--gold-dim); margin-bottom: 1.2rem; }
+  .slide-point-title { font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.3rem; }
+  .slide-point-body { font-size: 0.85rem; line-height: 1.6; color: #7A7870; }
+  .stat-row { display: flex; gap: 3rem; margin-top: 2rem; position: relative; }
+  .stat-item { }
+  .stat-num { font-family: 'Cormorant Garamond', serif; font-size: 3rem; font-weight: 300; color: var(--gold); line-height: 1; }
+  .stat-label { font-size: 0.7rem; letter-spacing: 0.1em; color: var(--muted); margin-top: 0.3rem; }
+  .deck-progress {
+    display: flex; gap: 4px; padding: 1rem 2rem;
+    border-top: 1px solid var(--faint);
+  }
+  .deck-dot {
+    height: 2px; flex: 1; background: var(--faint);
+    transition: background 0.3s;
+  }
+  .deck-dot.active { background: var(--gold); }
+
+  /* CONTACT */
+  #contact { background: var(--ink-2); text-align: center; }
+  #contact .section-label { justify-content: center; }
+  #contact .section-label::after { display: none; }
+  #contact .section-title { text-align: center; }
+  .contact-sub { font-size: 1rem; line-height: 1.75; color: var(--muted); max-width: 500px; margin: 0 auto 3rem; }
+  .contact-links { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; }
+  .contact-link {
+    padding: 0.85rem 2rem;
+    border: 1px solid var(--faint);
+    color: var(--white); font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase;
+    text-decoration: none; transition: all 0.2s;
+  }
+  .contact-link:hover { border-color: var(--gold); color: var(--gold); }
+  .contact-link.primary { background: var(--gold); border-color: var(--gold); color: var(--ink); }
+  .contact-link.primary:hover { background: var(--gold-light); }
+
+  footer {
+    padding: 2rem 4rem;
+    border-top: 1px solid var(--faint);
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .footer-copy { font-size: 0.72rem; letter-spacing: 0.08em; color: var(--muted); }
+  .footer-tag { font-family: 'DM Mono', monospace; font-size: 0.65rem; color: var(--gold-dim); letter-spacing: 0.1em; }
+
+  @media (max-width: 900px) {
+    nav { padding: 1rem 2rem; }
+    .nav-links { display: none; }
+    section { padding: 5rem 2rem; }
+    .hero { padding: 0 2rem 5rem; }
+    .hero-scroll { display: none; }
+    .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .project-item { grid-template-columns: 1fr; gap: 1rem; }
+    .project-num { font-size: 2rem; }
+    .fit-grid { grid-template-columns: 1fr; gap: 2px; }
+    .slide { padding: 3rem 2rem; }
+    .slide-cols { grid-template-columns: 1fr; gap: 1.5rem; }
+    footer { padding: 1.5rem 2rem; flex-direction: column; gap: 0.5rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">Brenda Iradukunda</a>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#projects">Projects</a>
+    <a href="#thim">For Thim</a>
+    <a href="#deck">Deck</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-line"></div>
+  <div class="hero-eyebrow">Full-Stack Developer &amp; Builder</div>
+  <h1 class="hero-name">Brenda<br /><em>Iradukunda</em></h1>
+  <p class="hero-sub">Building software that moves ideas forward.</p>
+  <div class="hero-actions">
+    <a href="#projects" class="btn-primary">View My Work</a>
+    <a href="#deck" class="btn-outline">Application Deck</a>
+  </div>
+  <div class="hero-scroll">Scroll</div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-label">01 — About</div>
+  <div class="about-grid">
+    <div class="about-text">
+      <h2 class="section-title">Developer with a<br /><em>builder's mindset</em></h2>
+      <p>I'm a self-driven developer who builds things end-to-end — from database schema to polished UI. My work lives at the intersection of <strong>real user needs and clean technical execution</strong>.</p>
+      <p>My projects aren't assignments. They're products I designed, built, deployed, and iterated on — spanning education, accessibility, and creative tools. I'm drawn to companies doing meaningful work where <strong>good engineering creates real leverage</strong>.</p>
+      <p>I'm currently seeking an internship where I can contribute immediately — and where there's infrastructure to rebuild and improve.</p>
+      <div style="margin-top: 2.5rem;">
+        <a href="https://github.com/iradukundabrenda" target="_blank" class="btn-outline">GitHub →</a>
+      </div>
+    </div>
+    <div>
+      <div class="skills-grid">
+        <div class="skill-item">
+          <div class="skill-title">Frontend</div>
+          <div class="skill-list">React · HTML/CSS · JavaScript · Responsive Design</div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-title">Backend</div>
+          <div class="skill-list">Node.js · REST APIs · Express · Database Design</div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-title">Tools</div>
+          <div class="skill-list">Git · GitHub · VS Code · Deployment pipelines</div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-title">Approach</div>
+          <div class="skill-list">Full-stack thinking · Clean code · User-first design</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-label">02 — Projects</div>
+  <h2 class="section-title" style="margin-bottom: 4rem;">What I've <em>built</em></h2>
+  <div class="projects-list">
+
+    <div class="project-item">
+      <div class="project-num">01</div>
+      <div>
+        <div class="project-tagline">Education Technology</div>
+        <h3 class="project-title">EduTrack</h3>
+        <p class="project-desc">A full-stack education tracking platform that allows students and educators to monitor learning progress, manage coursework, and surface insights through a clean dashboard interface. Built with a backend API serving a responsive frontend.</p>
+        <a href="https://github.com/iradukundabrenda" target="_blank" class="project-link">View on GitHub</a>
+      </div>
+      <div class="project-right">
+        <div class="project-tags">
+          <span class="tag">Full-Stack</span>
+          <span class="tag">React</span>
+          <span class="tag">Node.js</span>
+          <span class="tag">Database</span>
+          <span class="tag">Dashboard</span>
+        </div>
+        <div class="project-relevance">
+          <div class="relevance-label">Relevance to Thim Ventures</div>
+          <div class="relevance-text">Demonstrates ability to architect and build complete full-stack systems with a backend — exactly the skillset needed to rebuild and maintain Thim's platform infrastructure.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-item">
+      <div class="project-num">02</div>
+      <div>
+        <div class="project-tagline">Accessibility &amp; Audio</div>
+        <h3 class="project-title">Voice Library</h3>
+        <p class="project-desc">An accessible audio content library that stores, indexes, and delivers voice recordings through a structured interface. Designed with users who benefit from audio content in mind — highlighting both technical build quality and empathetic product thinking.</p>
+        <a href="https://github.com/iradukundabrenda" target="_blank" class="project-link">View on GitHub</a>
+      </div>
+      <div class="project-right">
+        <div class="project-tags">
+          <span class="tag">Accessibility</span>
+          <span class="tag">Audio API</span>
+          <span class="tag">Storage</span>
+          <span class="tag">JavaScript</span>
+        </div>
+        <div class="project-relevance">
+          <div class="relevance-label">Relevance to Thim Ventures</div>
+          <div class="relevance-text">Shows depth in API integration and content management — skills directly applicable to building investor portal features and dynamic content delivery on Thim's platform.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-item">
+      <div class="project-num">03</div>
+      <div>
+        <div class="project-tagline">Creative Tools</div>
+        <h3 class="project-title">Picasso</h3>
+        <p class="project-desc">A creative, browser-based tool that enables users to generate and manipulate visual content. Built to explore the intersection of interactivity and visual output — demonstrating comfort with complex UI state management and real-time rendering logic.</p>
+        <a href="https://github.com/iradukundabrenda" target="_blank" class="project-link">View on GitHub</a>
+      </div>
+      <div class="project-right">
+        <div class="project-tags">
+          <span class="tag">Canvas / WebGL</span>
+          <span class="tag">Interactive UI</span>
+          <span class="tag">State Management</span>
+          <span class="tag">Creative Tech</span>
+        </div>
+        <div class="project-relevance">
+          <div class="relevance-label">Relevance to Thim Ventures</div>
+          <div class="relevance-text">Proves capability in building polished, interactive front-end experiences — vital for Thim's investor-facing web presence where first impressions and UX quality directly impact trust.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- THIM FIT -->
+<section id="thim">
+  <div class="section-label">03 — Why Thim</div>
+  <h2 class="section-title" style="margin-bottom: 3.5rem;">How I can add<br /><em>value immediately</em></h2>
+  <div class="fit-grid">
+    <div class="fit-card">
+      <div class="fit-icon">⬡</div>
+      <div class="fit-heading">Rebuild the Backend</div>
+      <div class="fit-body">Your Framer frontend is live but the platform needs a working backend to scale. I can architect and build APIs, databases, and server-side logic to bring the full platform to life — investor portals, founder submissions, data management.</div>
+    </div>
+    <div class="fit-card">
+      <div class="fit-icon">⬡</div>
+      <div class="fit-heading">Investor Portal Engineering</div>
+      <div class="fit-body">The member-only investor experience needs authentication, deal flow management, and personalised dashboards. I've built similar systems in EduTrack. I know how to make complex data feel simple and trustworthy to end users.</div>
+    </div>
+    <div class="fit-card">
+      <div class="fit-icon">⬡</div>
+      <div class="fit-heading">Full-Stack, Not Half-Stack</div>
+      <div class="fit-body">I don't just build UIs. I think from database schema through to the pixel. For a lean team like Thim, that's the difference between hiring one developer who ships end-to-end and needing two.</div>
+    </div>
+  </div>
+</section>
+
+<!-- APPLICATION DECK -->
+<section id="deck">
+  <div class="section-label">04 — Application Deck</div>
+  <h2 class="section-title" style="margin-bottom: 2.5rem;">My case for<br /><em>the internship</em></h2>
+
+  <div class="deck-frame">
+    <div class="deck-nav">
+      <div class="deck-nav-title">Brenda Iradukunda — Thim Ventures Internship Deck</div>
+      <div class="deck-nav-controls">
+        <button class="deck-btn" onclick="changeSlide(-1)">← Prev</button>
+        <span class="deck-counter" id="deck-counter">1 / 6</span>
+        <button class="deck-btn" onclick="changeSlide(1)">Next →</button>
+      </div>
+    </div>
+
+    <div class="deck-slides">
+      <!-- Slide 1 -->
+      <div class="slide active" id="slide-1">
+        <div class="slide-bg"></div>
+        <div class="slide-num">01 / 06 — Introduction</div>
+        <h2 class="slide-heading">Brenda Iradukunda<br /><em>Full-Stack Developer</em></h2>
+        <p class="slide-body">I'm a developer who builds complete products — frontend, backend, and everything between. I'm applying to intern at Thim Ventures because I believe <strong>strong technical infrastructure is what turns a great investment network into a scalable platform</strong>.</p>
+        <div class="stat-row">
+          <div class="stat-item">
+            <div class="stat-num">3</div>
+            <div class="stat-label">Deployed Projects</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">7</div>
+            <div class="stat-label">GitHub Repositories</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">1</div>
+            <div class="stat-label">Platform Ready to Build</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 2 -->
+      <div class="slide" id="slide-2">
+        <div class="slide-bg"></div>
+        <div class="slide-num">02 / 06 — The Problem I Solve</div>
+        <h2 class="slide-heading">Thim has a platform.<br /><em>It needs a backbone.</em></h2>
+        <div class="slide-cols">
+          <div>
+            <div class="slide-point">
+              <div class="slide-point-title">Current State</div>
+              <div class="slide-point-body">A beautifully designed Framer website that represents the brand. No backend. No data persistence. No authenticated investor portal.</div>
+            </div>
+            <div class="slide-point">
+              <div class="slide-point-title">What's Missing</div>
+              <div class="slide-point-body">Member login, deal flow database, founder application processing, investor dashboard, email integrations, and dynamic content management.</div>
+            </div>
+          </div>
+          <div>
+            <div class="slide-point">
+              <div class="slide-point-title">What I'd Build</div>
+              <div class="slide-point-body">A full REST API backend, authentication layer, database schema for investors + founders, and CMS integration — engineered to scale with the club's growth.</div>
+            </div>
+            <div class="slide-point">
+              <div class="slide-point-title">Timeline</div>
+              <div class="slide-point-body">Core infrastructure in 4–6 weeks. Investor portal MVP in 8 weeks. Full platform with founder portal in 3 months.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 3 -->
+      <div class="slide" id="slide-3">
+        <div class="slide-bg"></div>
+        <div class="slide-num">03 / 06 — My Projects</div>
+        <h2 class="slide-heading">Proof of<br /><em>relevant experience</em></h2>
+        <div class="slide-cols">
+          <div>
+            <div class="slide-point">
+              <div class="slide-point-title">EduTrack → Member Management</div>
+              <div class="slide-point-body">Full-stack app tracking users, progress, and data. The same architecture applies to an investor CRM: member profiles, deal history, activity tracking.</div>
+            </div>
+            <div class="slide-point">
+              <div class="slide-point-title">Voice Library → Content Systems</div>
+              <div class="slide-point-body">Built a system for storing, indexing and serving content to users. Translates directly to Thim's media library and deal document management.</div>
+            </div>
+          </div>
+          <div>
+            <div class="slide-point">
+              <div class="slide-point-title">Picasso → Interactive UX</div>
+              <div class="slide-point-body">A real-time interactive UI with complex state. Shows I can build the kind of polished investor dashboard experience that high-net-worth users expect.</div>
+            </div>
+            <div class="slide-point">
+              <div class="slide-point-title">All Built From Scratch</div>
+              <div class="slide-point-body">Not tutorials. Not templates. Products I conceived, architected, built, and shipped — which is exactly the mode I'll work in at Thim.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 4 -->
+      <div class="slide" id="slide-4">
+        <div class="slide-bg"></div>
+        <div class="slide-num">04 / 06 — Technical Skills</div>
+        <h2 class="slide-heading">What I bring<br /><em>to the table</em></h2>
+        <div class="slide-cols">
+          <div>
+            <div class="slide-point">
+              <div class="slide-point-title">Backend Engineering</div>
+              <div class="slide-point-body">Node.js, Express, REST API design, authentication (JWT/OAuth), relational and document databases, server deployment.</div>
+            </div>
+            <div class="slide-point">
+              <div class="slide-point-title">Frontend Development</div>
+              <div class="slide-point-body">React, modern HTML/CSS, responsive design, component architecture, state management, and integration with backend APIs.</div>
+            </div>
+          </div>
+          <div>
+            <div class="slide-point">
+              <div class="slide-point-title">Product Thinking</div>
+              <div class="slide-point-body">I design with the user in mind. For an investor audience, that means clarity, trust signals, and friction-free experiences for high-value actions.</div>
+            </div>
+            <div class="slide-point">
+              <div class="slide-point-title">Fast Learner, Self-Starter</div>
+              <div class="slide-point-body">Everything in my portfolio was built through curiosity and iteration. I don't need to be hand-held — I need a direction and I'll figure out the path.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 5 -->
+      <div class="slide" id="slide-5">
+        <div class="slide-bg"></div>
+        <div class="slide-num">05 / 06 — What I Want to Learn</div>
+        <h2 class="slide-heading">What an internship<br /><em>at Thim means to me</em></h2>
+        <p class="slide-body" style="margin-bottom: 2rem;">I want exposure to how <strong>venture capital actually works</strong> — how deals are sourced, structured, and presented. I want to understand the investor mindset so I can build tools that truly serve it, not just technically functional ones. Working at the intersection of <strong>finance, startups, and technology</strong> is exactly where I want to grow.</p>
+        <div class="slide-cols">
+          <div class="slide-point">
+            <div class="slide-point-title">I'll give you</div>
+            <div class="slide-point-body">A developer who ships fast, takes ownership, and treats your platform like my own product. Reliable, communicative, and invested in Thim's growth.</div>
+          </div>
+          <div class="slide-point">
+            <div class="slide-point-title">I ask for</div>
+            <div class="slide-point-body">Mentorship on the business side. Real responsibility on real infrastructure. The chance to contribute to something that matters in the UK startup ecosystem.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 6 -->
+      <div class="slide" id="slide-6">
+        <div class="slide-bg"></div>
+        <div class="slide-num">06 / 06 — Contact</div>
+        <h2 class="slide-heading">Let's build<br /><em>Thim's platform together.</em></h2>
+        <p class="slide-body" style="margin-bottom: 3rem;">I'm ready to start immediately. I have the skills, the drive, and a clear understanding of what Thim needs technically. I'd love the opportunity to prove it in practice.</p>
+        <div style="display: flex; gap: 1.5rem; flex-wrap: wrap;">
+          <a href="https://github.com/iradukundabrenda" target="_blank" class="btn-primary">GitHub Profile</a>
+          <a href="mailto:brenda@email.com" class="btn-outline">Get in Touch</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="deck-progress">
+      <div class="deck-dot active" id="dot-1"></div>
+      <div class="deck-dot" id="dot-2"></div>
+      <div class="deck-dot" id="dot-3"></div>
+      <div class="deck-dot" id="dot-4"></div>
+      <div class="deck-dot" id="dot-5"></div>
+      <div class="deck-dot" id="dot-6"></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-label">05 — Contact</div>
+  <h2 class="section-title">Ready to<br /><em>get started</em></h2>
+  <p class="contact-sub">I'm available immediately and excited to contribute to what Thim Ventures is building.</p>
+  <div class="contact-links">
+    <a href="mailto:brenda@email.com" class="contact-link primary">Send an Email</a>
+    <a href="https://github.com/iradukundabrenda" target="_blank" class="contact-link">GitHub</a>
+    <a href="https://linkedin.com" target="_blank" class="contact-link">LinkedIn</a>
+  </div>
+</section>
+
+<footer>
+  <span class="footer-copy">© 2026 Brenda Iradukunda</span>
+  <span class="footer-tag">Full-Stack Developer · Open to Internships</span>
+</footer>
+
+<script>
+  let currentSlide = 1;
+  const totalSlides = 6;
+
+  function changeSlide(dir) {
+    const prev = currentSlide;
+    currentSlide = Math.max(1, Math.min(totalSlides, currentSlide + dir));
+    if (prev === currentSlide) return;
+
+    document.getElementById('slide-' + prev).classList.remove('active');
+    document.getElementById('slide-' + currentSlide).classList.add('active');
+    document.getElementById('dot-' + prev).classList.remove('active');
+    document.getElementById('dot-' + currentSlide).classList.add('active');
+    document.getElementById('deck-counter').textContent = currentSlide + ' / ' + totalSlides;
+  }
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') changeSlide(1);
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') changeSlide(-1);
+  });
+</script>
+</body>
+</html>
