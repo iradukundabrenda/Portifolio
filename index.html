@@ -1,702 +1,529 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Brenda Iradukunda — Developer Portfolio</title>
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400&display=swap" rel="stylesheet" />
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono&display=swap" rel="stylesheet"/>
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  :root {
-    --gold: #C9A84C;
-    --gold-light: #E2C47A;
-    --gold-dim: #8A6A28;
-    --ink: #0D0D0D;
-    --ink-2: #1A1A1A;
-    --ink-3: #262626;
-    --surface: #141414;
-    --muted: #6B6B6B;
-    --faint: #2A2A2A;
-    --white: #F7F4EE;
-    --accent: #C9A84C;
-  }
-
-  html { scroll-behavior: smooth; }
-
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--ink);
-    color: var(--white);
-    min-height: 100vh;
-    overflow-x: hidden;
-  }
-
-  /* NAV */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 1.2rem 4rem;
-    background: rgba(13,13,13,0.92);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(201,168,76,0.12);
-  }
-  .nav-logo {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.2rem; font-weight: 500; letter-spacing: 0.08em;
-    color: var(--gold); text-decoration: none;
-  }
-  .nav-links { display: flex; gap: 2.5rem; }
-  .nav-links a {
-    font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase;
-    color: var(--muted); text-decoration: none;
-    transition: color 0.2s;
-  }
-  .nav-links a:hover { color: var(--gold); }
-
-  /* HERO */
-  .hero {
-    min-height: 100vh;
-    display: flex; flex-direction: column; justify-content: flex-end;
-    padding: 0 4rem 6rem;
-    position: relative;
-    overflow: hidden;
-  }
-  .hero-bg {
-    position: absolute; inset: 0;
-    background: radial-gradient(ellipse 80% 60% at 70% 40%, rgba(201,168,76,0.06) 0%, transparent 70%),
-                radial-gradient(ellipse 40% 50% at 20% 80%, rgba(201,168,76,0.04) 0%, transparent 60%);
-  }
-  .hero-line {
-    position: absolute; top: 0; left: 4rem;
-    width: 1px; height: 100%;
-    background: linear-gradient(to bottom, transparent, rgba(201,168,76,0.2) 30%, rgba(201,168,76,0.2) 70%, transparent);
-  }
-  .hero-eyebrow {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
-    color: var(--gold); margin-bottom: 1.5rem;
-    display: flex; align-items: center; gap: 1rem;
-  }
-  .hero-eyebrow::before { content: ''; width: 32px; height: 1px; background: var(--gold); }
-  .hero-name {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(3.5rem, 8vw, 7rem);
-    font-weight: 300; line-height: 0.95;
-    letter-spacing: -0.02em;
-    color: var(--white);
-    margin-bottom: 0.3rem;
-  }
-  .hero-name em { font-style: italic; color: var(--gold); }
-  .hero-sub {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(1.2rem, 2.5vw, 2rem);
-    font-weight: 300; color: var(--muted);
-    margin-bottom: 3rem; letter-spacing: 0.02em;
-  }
-  .hero-actions { display: flex; gap: 1.5rem; flex-wrap: wrap; }
-  .btn-primary {
-    padding: 0.85rem 2.5rem;
-    background: var(--gold);
-    color: var(--ink);
-    font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase;
-    font-weight: 500; text-decoration: none;
-    transition: background 0.2s, transform 0.1s;
-    display: inline-block;
-  }
-  .btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
-  .btn-outline {
-    padding: 0.85rem 2.5rem;
-    border: 1px solid rgba(201,168,76,0.4);
-    color: var(--gold);
-    font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase;
-    font-weight: 400; text-decoration: none;
-    transition: border-color 0.2s, background 0.2s;
-    display: inline-block;
-  }
-  .btn-outline:hover { border-color: var(--gold); background: rgba(201,168,76,0.06); }
-  .hero-scroll {
-    position: absolute; bottom: 2.5rem; right: 4rem;
-    font-family: 'DM Mono', monospace; font-size: 0.65rem;
-    letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted);
-    writing-mode: vertical-rl; display: flex; align-items: center; gap: 1rem;
-  }
-  .hero-scroll::after { content: ''; width: 1px; height: 48px; background: var(--muted); }
-
-  /* SECTIONS */
-  section { padding: 7rem 4rem; }
-  .section-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase;
-    color: var(--gold); margin-bottom: 3.5rem;
-    display: flex; align-items: center; gap: 1rem;
-  }
-  .section-label::after { content: ''; flex: 1; max-width: 60px; height: 1px; background: var(--gold-dim); }
-  .section-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(2.2rem, 4vw, 3.5rem);
-    font-weight: 300; line-height: 1.1; letter-spacing: -0.01em;
-    margin-bottom: 1.5rem;
-  }
-  .section-title em { font-style: italic; color: var(--gold); }
-
-  /* ABOUT */
-  #about { background: var(--ink-2); }
-  .about-grid {
-    display: grid; grid-template-columns: 1fr 1fr;
-    gap: 6rem; align-items: center; max-width: 1100px;
-  }
-  .about-text p {
-    font-size: 1.05rem; line-height: 1.8; color: #B0ADA6;
-    margin-bottom: 1.4rem;
-  }
-  .about-text strong { color: var(--white); font-weight: 500; }
-  .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
-  .skill-item {
-    padding: 1.2rem 1.4rem;
-    border: 1px solid var(--faint);
-    border-left: 2px solid var(--gold-dim);
-  }
-  .skill-title { font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.5rem; }
-  .skill-list { font-size: 0.82rem; color: var(--muted); line-height: 1.7; }
-
-  /* PROJECTS */
-  #projects { background: var(--ink); }
-  .projects-list { display: flex; flex-direction: column; gap: 0; }
-  .project-item {
-    display: grid; grid-template-columns: 80px 1fr 1fr;
-    gap: 3rem; align-items: start;
-    padding: 3.5rem 0;
-    border-bottom: 1px solid var(--faint);
-    position: relative;
-    transition: background 0.2s;
-  }
-  .project-item:first-child { border-top: 1px solid var(--faint); }
-  .project-num {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 3rem; font-weight: 300; color: rgba(201,168,76,0.15);
-    line-height: 1; padding-top: 0.2rem;
-  }
-  .project-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 2rem; font-weight: 400; letter-spacing: -0.01em;
-    color: var(--white); margin-bottom: 0.6rem;
-  }
-  .project-tagline {
-    font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase;
-    color: var(--gold); margin-bottom: 1rem;
-  }
-  .project-desc { font-size: 0.9rem; line-height: 1.75; color: #8A8880; }
-  .project-right { padding-top: 0.4rem; }
-  .project-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem; }
-  .tag {
-    font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase;
-    padding: 0.3rem 0.7rem;
-    border: 1px solid var(--faint); color: var(--muted);
-  }
-  .project-relevance {
-    padding: 1rem 1.2rem;
-    background: rgba(201,168,76,0.05);
-    border-left: 2px solid var(--gold-dim);
-  }
-  .relevance-label { font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.4rem; }
-  .relevance-text { font-size: 0.82rem; line-height: 1.6; color: #8A8880; }
-  .project-link {
-    display: inline-flex; align-items: center; gap: 0.5rem;
-    font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase;
-    color: var(--gold); text-decoration: none; margin-top: 1rem;
-    transition: gap 0.2s;
-  }
-  .project-link:hover { gap: 0.75rem; }
-  .project-link::after { content: '→'; }
-
-  /* THIM FIT */
-  #thim { background: var(--ink-2); }
-  .fit-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
-  .fit-card {
-    padding: 2.5rem 2rem;
-    background: var(--ink-3);
-    transition: background 0.2s;
-  }
-  .fit-card:hover { background: #1E1E1E; }
-  .fit-icon { font-size: 1.5rem; color: var(--gold); margin-bottom: 1.2rem; }
-  .fit-heading { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 400; margin-bottom: 0.8rem; }
-  .fit-body { font-size: 0.85rem; line-height: 1.75; color: #7A7870; }
-
-  /* APPLICATION DECK */
-  #deck { background: var(--ink); }
-  .deck-frame {
-    border: 1px solid var(--faint);
-    background: var(--ink-2);
-    overflow: hidden;
-  }
-  .deck-nav {
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 1rem 2rem;
-    border-bottom: 1px solid var(--faint);
-    background: var(--ink-3);
-  }
-  .deck-nav-title { font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); }
-  .deck-nav-controls { display: flex; gap: 0.7rem; align-items: center; }
-  .deck-btn {
-    padding: 0.45rem 1.1rem;
-    border: 1px solid var(--faint); background: transparent;
-    color: var(--muted); font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase;
-    cursor: pointer; transition: all 0.15s; font-family: 'DM Sans', sans-serif;
-  }
-  .deck-btn:hover { border-color: var(--gold); color: var(--gold); }
-  .deck-counter { font-family: 'DM Mono', monospace; font-size: 0.7rem; color: var(--muted); min-width: 50px; text-align: center; }
-  .deck-slides { position: relative; }
-  .slide {
-    display: none;
-    min-height: 520px;
-    padding: 4.5rem 5rem;
-    position: relative;
-    overflow: hidden;
-  }
-  .slide.active { display: flex; flex-direction: column; justify-content: center; }
-  .slide-bg {
-    position: absolute; inset: 0;
-    background: radial-gradient(ellipse 60% 60% at 80% 20%, rgba(201,168,76,0.05) 0%, transparent 70%);
-  }
-  .slide-num {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.65rem; letter-spacing: 0.2em; color: var(--gold-dim); margin-bottom: 2rem;
-  }
-  .slide-heading {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 300;
-    line-height: 1.1; letter-spacing: -0.01em; margin-bottom: 1.5rem; position: relative;
-  }
-  .slide-heading em { font-style: italic; color: var(--gold); }
-  .slide-body { font-size: 0.95rem; line-height: 1.8; color: #8A8880; max-width: 680px; position: relative; }
-  .slide-body strong { color: var(--white); font-weight: 500; }
-  .slide-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; position: relative; }
-  .slide-point { padding-left: 1.2rem; border-left: 2px solid var(--gold-dim); margin-bottom: 1.2rem; }
-  .slide-point-title { font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.3rem; }
-  .slide-point-body { font-size: 0.85rem; line-height: 1.6; color: #7A7870; }
-  .stat-row { display: flex; gap: 3rem; margin-top: 2rem; position: relative; }
-  .stat-item { }
-  .stat-num { font-family: 'Cormorant Garamond', serif; font-size: 3rem; font-weight: 300; color: var(--gold); line-height: 1; }
-  .stat-label { font-size: 0.7rem; letter-spacing: 0.1em; color: var(--muted); margin-top: 0.3rem; }
-  .deck-progress {
-    display: flex; gap: 4px; padding: 1rem 2rem;
-    border-top: 1px solid var(--faint);
-  }
-  .deck-dot {
-    height: 2px; flex: 1; background: var(--faint);
-    transition: background 0.3s;
-  }
-  .deck-dot.active { background: var(--gold); }
-
-  /* CONTACT */
-  #contact { background: var(--ink-2); text-align: center; }
-  #contact .section-label { justify-content: center; }
-  #contact .section-label::after { display: none; }
-  #contact .section-title { text-align: center; }
-  .contact-sub { font-size: 1rem; line-height: 1.75; color: var(--muted); max-width: 500px; margin: 0 auto 3rem; }
-  .contact-links { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; }
-  .contact-link {
-    padding: 0.85rem 2rem;
-    border: 1px solid var(--faint);
-    color: var(--white); font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase;
-    text-decoration: none; transition: all 0.2s;
-  }
-  .contact-link:hover { border-color: var(--gold); color: var(--gold); }
-  .contact-link.primary { background: var(--gold); border-color: var(--gold); color: var(--ink); }
-  .contact-link.primary:hover { background: var(--gold-light); }
-
-  footer {
-    padding: 2rem 4rem;
-    border-top: 1px solid var(--faint);
-    display: flex; justify-content: space-between; align-items: center;
-  }
-  .footer-copy { font-size: 0.72rem; letter-spacing: 0.08em; color: var(--muted); }
-  .footer-tag { font-family: 'DM Mono', monospace; font-size: 0.65rem; color: var(--gold-dim); letter-spacing: 0.1em; }
-
-  @media (max-width: 900px) {
-    nav { padding: 1rem 2rem; }
-    .nav-links { display: none; }
-    section { padding: 5rem 2rem; }
-    .hero { padding: 0 2rem 5rem; }
-    .hero-scroll { display: none; }
-    .about-grid { grid-template-columns: 1fr; gap: 3rem; }
-    .project-item { grid-template-columns: 1fr; gap: 1rem; }
-    .project-num { font-size: 2rem; }
-    .fit-grid { grid-template-columns: 1fr; gap: 2px; }
-    .slide { padding: 3rem 2rem; }
-    .slide-cols { grid-template-columns: 1fr; gap: 1.5rem; }
-    footer { padding: 1.5rem 2rem; flex-direction: column; gap: 0.5rem; text-align: center; }
-  }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --gold:#C9A84C;--gold-l:#E2C47A;--gold-d:#8A6A28;
+  --ink:#0D0D0D;--ink2:#141414;--ink3:#1A1A1A;--ink4:#222;
+  --faint:#2A2A2A;--muted:#666;--dim:#888;
+  --cream:#F7F4EE;
+}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--ink);color:var(--cream);overflow-x:hidden}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;justify-content:space-between;align-items:center;padding:1.1rem 4rem;background:rgba(13,13,13,.94);backdrop-filter:blur(14px);border-bottom:1px solid rgba(201,168,76,.1)}
+.nl{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:500;letter-spacing:.1em;color:var(--gold);text-decoration:none}
+.nr{display:flex;gap:2.5rem}
+.nr a{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .2s}
+.nr a:hover{color:var(--gold)}
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:0 4rem 7rem;position:relative;overflow:hidden}
+.hero-glow{position:absolute;inset:0;background:radial-gradient(ellipse 70% 55% at 65% 35%,rgba(201,168,76,.07) 0%,transparent 70%)}
+.hero-vline{position:absolute;top:0;left:4rem;width:1px;height:100%;background:linear-gradient(to bottom,transparent,rgba(201,168,76,.18) 25%,rgba(201,168,76,.18) 75%,transparent)}
+.eyebrow{font-family:'DM Mono',monospace;font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:1.6rem;display:flex;align-items:center;gap:1rem}
+.eyebrow::before{content:'';width:28px;height:1px;background:var(--gold)}
+h1{font-family:'Cormorant Garamond',serif;font-size:clamp(3.8rem,9vw,7.5rem);font-weight:300;line-height:.92;letter-spacing:-.02em;margin-bottom:.4rem}
+h1 em{font-style:italic;color:var(--gold)}
+.hero-sub{font-family:'Cormorant Garamond',serif;font-size:clamp(1.1rem,2.2vw,1.7rem);font-weight:300;color:var(--muted);margin-bottom:3.5rem;letter-spacing:.02em}
+.ctas{display:flex;gap:1.5rem;flex-wrap:wrap}
+.btn-g{padding:.85rem 2.4rem;background:var(--gold);color:var(--ink);font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;font-weight:500;text-decoration:none;transition:background .2s,transform .12s;display:inline-block}
+.btn-g:hover{background:var(--gold-l);transform:translateY(-1px)}
+.btn-o{padding:.85rem 2.4rem;border:1px solid rgba(201,168,76,.35);color:var(--gold);font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;text-decoration:none;transition:border-color .2s,background .2s;display:inline-block}
+.btn-o:hover{border-color:var(--gold);background:rgba(201,168,76,.06)}
+.scroll-hint{position:absolute;bottom:2.5rem;right:4rem;font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);writing-mode:vertical-rl;display:flex;align-items:center;gap:.8rem}
+.scroll-hint::after{content:'';width:1px;height:44px;background:var(--muted)}
+section{padding:7rem 4rem}
+.s-label{font-family:'DM Mono',monospace;font-size:.62rem;letter-spacing:.26em;text-transform:uppercase;color:var(--gold);margin-bottom:4rem;display:flex;align-items:center;gap:1rem}
+.s-label::after{content:'';flex:1;max-width:56px;height:1px;background:var(--gold-d)}
+.s-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,3.8vw,3.2rem);font-weight:300;line-height:1.1;letter-spacing:-.01em;margin-bottom:1.5rem}
+.s-title em{font-style:italic;color:var(--gold)}
+#about{background:var(--ink2)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center;max-width:1100px}
+.about-text p{font-size:1rem;line-height:1.85;color:#AAA8A0;margin-bottom:1.3rem}
+.about-text strong{color:var(--cream);font-weight:500}
+.skills{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin-top:2rem}
+.sk{padding:1.1rem 1.3rem;border:1px solid var(--faint);border-left:2px solid var(--gold-d)}
+.sk-t{font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:.4rem}
+.sk-l{font-size:.8rem;color:var(--muted);line-height:1.65}
+#projects{background:var(--ink)}
+.project{border-top:1px solid var(--faint);padding:5rem 0;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
+.project:last-child{border-bottom:1px solid var(--faint)}
+.proj-num{font-family:'DM Mono',monospace;font-size:.62rem;letter-spacing:.2em;color:var(--gold-d);margin-bottom:1.2rem}
+.proj-title{font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:400;margin-bottom:.5rem;line-height:1.1}
+.proj-subtitle{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:1.8rem}
+.proj-desc{font-size:.88rem;line-height:1.85;color:#8A8880;margin-bottom:1.2rem}
+.proj-desc strong{color:#BBB9B1;font-weight:500}
+.proj-tech{display:flex;flex-wrap:wrap;gap:.45rem;margin-bottom:1.8rem}
+.tech{font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;padding:.28rem .65rem;border:1px solid var(--faint);color:var(--muted)}
+.proj-link{display:inline-flex;align-items:center;gap:.5rem;font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);text-decoration:none;transition:gap .18s}
+.proj-link:hover{gap:.8rem}
+.proj-link::after{content:'→'}
+.demo-wrap{background:var(--ink3);border:1px solid var(--faint);overflow:hidden;position:sticky;top:7rem}
+.demo-bar{display:flex;align-items:center;gap:.5rem;padding:.7rem 1rem;background:var(--ink4);border-bottom:1px solid var(--faint)}
+.dot{width:9px;height:9px;border-radius:50%}
+.dot.r{background:#FF5F57}.dot.y{background:#FEBC2E}.dot.g{background:#28C840}
+.demo-title{font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:.12em;color:var(--muted);margin-left:.5rem}
+.demo-body{padding:1.5rem}
+.vl-search{display:flex;align-items:center;gap:.8rem;padding:.75rem 1rem;background:var(--ink);border:1px solid var(--faint);margin-bottom:1.2rem;cursor:pointer;transition:border-color .2s}
+.vl-search:hover{border-color:var(--gold)}
+.vl-mic{width:32px;height:32px;border-radius:50%;background:var(--gold);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.vl-mic svg{width:14px;height:14px;fill:var(--ink)}
+.vl-text{font-size:.82rem;color:var(--muted);flex:1}
+.vl-listening{display:none;align-items:center;gap:.6rem;padding:.65rem 1rem;background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.2);margin-bottom:1rem;font-size:.78rem;color:var(--gold)}
+.vl-wave{display:flex;align-items:center;gap:2px}
+.vl-wave span{width:3px;background:var(--gold);border-radius:2px;animation:wave .8s ease-in-out infinite}
+.vl-wave span:nth-child(2){animation-delay:.1s}
+.vl-wave span:nth-child(3){animation-delay:.2s}
+.vl-wave span:nth-child(4){animation-delay:.1s}
+@keyframes wave{0%,100%{height:6px}50%{height:18px}}
+.vl-result{display:none;padding:1rem;background:var(--ink);border:1px solid var(--faint);margin-bottom:.8rem}
+.vl-result-label{font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:.6rem}
+.vl-book-found{display:flex;gap:.9rem;align-items:center}
+.vl-cover{width:36px;height:50px;background:linear-gradient(135deg,#8A6A28,#C9A84C);flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.vl-cover svg{width:16px;height:16px;fill:var(--ink)}
+.vl-binfo .title{font-size:.85rem;font-weight:500;color:var(--cream);margin-bottom:.2rem}
+.vl-binfo .author{font-size:.75rem;color:var(--muted)}
+.vl-response{display:none;padding:.7rem 1rem;background:rgba(201,168,76,.06);border-left:2px solid var(--gold);font-size:.78rem;color:#AAA;line-height:1.6;margin-bottom:.8rem}
+.vl-books{display:flex;flex-direction:column;gap:.5rem;margin-bottom:1.2rem}
+.vl-book-row{display:flex;gap:.8rem;align-items:center;padding:.55rem .8rem;border:1px solid var(--faint)}
+.mini-cover{width:28px;height:38px;flex-shrink:0}
+.mc1{background:linear-gradient(135deg,#2A3A5A,#4A6A9A)}
+.mc2{background:linear-gradient(135deg,#3A2A1A,#8A6A28)}
+.mc3{background:linear-gradient(135deg,#1A3A2A,#2A7A4A)}
+.mc4{background:linear-gradient(135deg,#3A1A2A,#8A2A5A)}
+.vl-br-title{font-size:.78rem;color:var(--cream)}
+.vl-br-auth{font-size:.68rem;color:var(--muted)}
+.vl-status{font-family:'DM Mono',monospace;font-size:.6rem;color:var(--muted);margin-top:1rem;display:flex;align-items:center;gap:.5rem}
+.status-dot{width:6px;height:6px;border-radius:50%;background:#28C840}
+.et-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:1.2rem}
+.et-greet{font-size:.78rem;color:var(--muted)}
+.et-greet strong{color:var(--cream);font-weight:500}
+.et-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:.7rem;margin-bottom:1.2rem}
+.et-stat{padding:.8rem;background:var(--ink4);text-align:center}
+.et-stat-n{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:400;color:var(--gold);line-height:1}
+.et-stat-l{font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:.3rem}
+.et-section-label{font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:.6rem}
+.et-course{display:flex;align-items:center;gap:.9rem;padding:.55rem .8rem;border:1px solid var(--faint);margin-bottom:.5rem}
+.et-progress-wrap{flex:1}
+.et-course-name{font-size:.78rem;color:var(--cream);margin-bottom:.35rem}
+.et-bar-bg{height:4px;background:var(--faint);border-radius:2px}
+.et-bar{height:4px;border-radius:2px;background:var(--gold)}
+.et-pct{font-family:'DM Mono',monospace;font-size:.6rem;color:var(--gold);min-width:30px;text-align:right}
+.et-activity{display:flex;flex-direction:column;gap:.5rem;margin-top:1rem}
+.et-act-row{display:flex;gap:.7rem;align-items:flex-start;font-size:.75rem}
+.et-act-dot{width:7px;height:7px;border-radius:50%;background:var(--gold-d);margin-top:.3rem;flex-shrink:0}
+.et-act-text{color:#888}
+.et-act-time{font-family:'DM Mono',monospace;font-size:.6rem;color:var(--muted);margin-left:auto;flex-shrink:0}
+.pic-toolbar{display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;margin-bottom:.8rem}
+.pic-tool{width:32px;height:32px;border:1px solid var(--faint);background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:.9rem;transition:all .15s;line-height:1}
+.pic-tool:hover,.pic-tool.active{border-color:var(--gold);color:var(--gold)}
+.pic-color{width:22px;height:22px;border-radius:50%;border:2px solid transparent;cursor:pointer;transition:transform .15s;display:inline-block}
+.pic-color:hover{transform:scale(1.15)}
+.pic-color.sel{border-color:var(--cream)}
+.pic-size{display:flex;align-items:center;gap:.5rem;font-size:.65rem;color:var(--muted);margin-left:auto}
+.pic-size input{width:70px;accent-color:var(--gold)}
+.pic-actions{display:flex;gap:.5rem;margin-top:.8rem}
+.pic-btn{padding:.4rem .9rem;border:1px solid var(--faint);background:transparent;color:var(--muted);font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .15s}
+.pic-btn:hover{border-color:var(--gold);color:var(--gold)}
+#showcase{background:var(--ink2);overflow:hidden}
+.showcase-intro{max-width:640px;margin-bottom:4rem}
+.showcase-intro p{font-size:.95rem;line-height:1.85;color:#888;margin-bottom:1rem}
+.built-badge{display:inline-flex;align-items:center;gap:.6rem;padding:.5rem 1rem;background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.2);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold)}
+.thim-clone{border:1px solid var(--faint);overflow:hidden}
+.tc-nav{display:flex;justify-content:space-between;align-items:center;padding:1rem 2.5rem;background:rgba(13,13,13,.98);border-bottom:1px solid var(--faint)}
+.tc-logo{font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:500;letter-spacing:.08em;color:var(--cream)}
+.tc-links{display:flex;gap:2rem}
+.tc-links span{font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);cursor:default}
+.tc-hero{min-height:400px;display:flex;flex-direction:column;justify-content:center;padding:5rem 3rem;background:var(--ink);position:relative;overflow:hidden}
+.tc-hero-glow{position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 75% 30%,rgba(201,168,76,.06) 0%,transparent 70%)}
+.tc-tag{font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:1.2rem;display:flex;align-items:center;gap:.8rem;position:relative}
+.tc-tag::before{content:'';width:24px;height:1px;background:var(--gold)}
+.tc-h1{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,4vw,3.2rem);font-weight:300;line-height:1;letter-spacing:-.02em;margin-bottom:.3rem;position:relative}
+.tc-h1 em{font-style:italic;color:var(--gold)}
+.tc-sub{font-size:.85rem;color:var(--muted);max-width:480px;line-height:1.75;margin-bottom:2.5rem;position:relative}
+.tc-btns{display:flex;gap:1rem;position:relative}
+.tc-btn-g{padding:.7rem 2rem;background:var(--gold);color:var(--ink);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;font-weight:500;border:none;cursor:default;font-family:'DM Sans',sans-serif}
+.tc-btn-o{padding:.7rem 2rem;border:1px solid rgba(201,168,76,.3);color:var(--gold);background:transparent;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;cursor:default;font-family:'DM Sans',sans-serif}
+.tc-stats{display:grid;grid-template-columns:repeat(4,1fr);padding:2rem 3rem;background:var(--ink3);border-top:1px solid var(--faint);border-bottom:1px solid var(--faint)}
+.tc-stat{text-align:center;padding:.8rem}
+.tc-stat-n{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;color:var(--gold);line-height:1}
+.tc-stat-l{font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:.35rem}
+.tc-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--faint)}
+.tc-card{padding:2rem 1.8rem;background:var(--ink3)}
+.tc-card-icon{font-size:1.1rem;color:var(--gold);margin-bottom:1rem}
+.tc-card-t{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:400;margin-bottom:.6rem;color:var(--cream)}
+.tc-card-b{font-size:.78rem;line-height:1.7;color:var(--muted)}
+.tc-footer-strip{padding:1.1rem 3rem;background:var(--ink4);display:flex;justify-content:space-between;align-items:center}
+.tc-fs-text{font-size:.62rem;letter-spacing:.08em;color:var(--muted)}
+.tc-fs-tag{font-family:'DM Mono',monospace;font-size:.58rem;color:var(--gold-d);letter-spacing:.1em}
+#contact{background:var(--ink);text-align:center}
+#contact .s-label{justify-content:center}
+#contact .s-label::after{display:none}
+.contact-sub{font-size:.95rem;line-height:1.8;color:var(--muted);max-width:480px;margin:0 auto 3rem}
+.contact-row{display:flex;justify-content:center;gap:1.2rem;flex-wrap:wrap}
+.cl{padding:.82rem 2rem;border:1px solid var(--faint);color:var(--cream);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;transition:all .2s}
+.cl:hover{border-color:var(--gold);color:var(--gold)}
+.cl.primary{background:var(--gold);border-color:var(--gold);color:var(--ink)}
+.cl.primary:hover{background:var(--gold-l)}
+footer{padding:1.8rem 4rem;border-top:1px solid var(--faint);display:flex;justify-content:space-between;align-items:center}
+.fc{font-size:.68rem;letter-spacing:.08em;color:var(--muted)}
+.ft{font-family:'DM Mono',monospace;font-size:.6rem;color:var(--gold-d)}
+@media(max-width:900px){
+  nav{padding:1rem 1.5rem}.nr{display:none}
+  section{padding:4.5rem 1.5rem}.hero{padding:0 1.5rem 5rem}.scroll-hint{display:none}
+  .about-grid,.project{grid-template-columns:1fr;gap:2.5rem}
+  .tc-stats{grid-template-columns:1fr 1fr}.tc-cards{grid-template-columns:1fr}
+  .tc-hero{padding:3rem 1.5rem;min-height:auto}.tc-nav{padding:.9rem 1.5rem}
+  footer{padding:1.5rem;flex-direction:column;gap:.5rem;text-align:center}
+}
 </style>
 </head>
 <body>
 
 <nav>
-  <a href="#" class="nav-logo">Brenda Iradukunda</a>
-  <div class="nav-links">
+  <a href="#" class="nl">Brenda Iradukunda</a>
+  <div class="nr">
     <a href="#about">About</a>
     <a href="#projects">Projects</a>
-    <a href="#thim">For Thim</a>
-    <a href="#deck">Deck</a>
+    <a href="#showcase">Showcase</a>
     <a href="#contact">Contact</a>
   </div>
 </nav>
 
 <!-- HERO -->
 <section class="hero" id="home">
-  <div class="hero-bg"></div>
-  <div class="hero-line"></div>
-  <div class="hero-eyebrow">Full-Stack Developer &amp; Builder</div>
-  <h1 class="hero-name">Brenda<br /><em>Iradukunda</em></h1>
-  <p class="hero-sub">Building software that moves ideas forward.</p>
-  <div class="hero-actions">
-    <a href="#projects" class="btn-primary">View My Work</a>
-    <a href="#deck" class="btn-outline">Application Deck</a>
+  <div class="hero-glow"></div>
+  <div class="hero-vline"></div>
+  <div class="eyebrow">Full-Stack Developer &amp; Builder</div>
+  <h1>Brenda<br/><em>Iradukunda</em></h1>
+  <p class="hero-sub">I build things end-to-end — from the first line of code to the last pixel.</p>
+  <div class="ctas">
+    <a href="#projects" class="btn-g">View My Projects</a>
+    <a href="#contact" class="btn-o">Get in Touch</a>
   </div>
-  <div class="hero-scroll">Scroll</div>
+  <div class="scroll-hint">Scroll</div>
 </section>
 
 <!-- ABOUT -->
 <section id="about">
-  <div class="section-label">01 — About</div>
+  <div class="s-label">01 — About</div>
   <div class="about-grid">
     <div class="about-text">
-      <h2 class="section-title">Developer with a<br /><em>builder's mindset</em></h2>
-      <p>I'm a self-driven developer who builds things end-to-end — from database schema to polished UI. My work lives at the intersection of <strong>real user needs and clean technical execution</strong>.</p>
-      <p>My projects aren't assignments. They're products I designed, built, deployed, and iterated on — spanning education, accessibility, and creative tools. I'm drawn to companies doing meaningful work where <strong>good engineering creates real leverage</strong>.</p>
-      <p>I'm currently seeking an internship where I can contribute immediately — and where there's infrastructure to rebuild and improve.</p>
-      <div style="margin-top: 2.5rem;">
-        <a href="https://github.com/iradukundabrenda" target="_blank" class="btn-outline">GitHub →</a>
-      </div>
+      <h2 class="s-title">Developer with a<br/><em>builder's mindset</em></h2>
+      <p>I'm a self-driven full-stack developer who builds products from scratch — designing the architecture, writing the backend logic, and polishing the frontend until it feels right. <strong>My projects aren't assignments. They're products I conceived, built, and shipped.</strong></p>
+      <p>I'm drawn to work where technology solves real problems — in education, accessibility, creativity, and beyond. I care about clean code, great user experience, and systems that actually hold up.</p>
+      <a href="https://github.com/iradukundabrenda" target="_blank" class="btn-o" style="margin-top:1.8rem;display:inline-block">GitHub Profile →</a>
     </div>
-    <div>
-      <div class="skills-grid">
-        <div class="skill-item">
-          <div class="skill-title">Frontend</div>
-          <div class="skill-list">React · HTML/CSS · JavaScript · Responsive Design</div>
-        </div>
-        <div class="skill-item">
-          <div class="skill-title">Backend</div>
-          <div class="skill-list">Node.js · REST APIs · Express · Database Design</div>
-        </div>
-        <div class="skill-item">
-          <div class="skill-title">Tools</div>
-          <div class="skill-list">Git · GitHub · VS Code · Deployment pipelines</div>
-        </div>
-        <div class="skill-item">
-          <div class="skill-title">Approach</div>
-          <div class="skill-list">Full-stack thinking · Clean code · User-first design</div>
-        </div>
-      </div>
+    <div class="skills">
+      <div class="sk"><div class="sk-t">Frontend</div><div class="sk-l">React · HTML/CSS · JavaScript · Responsive Design</div></div>
+      <div class="sk"><div class="sk-t">Backend</div><div class="sk-l">Python · Flask · Node.js · REST APIs · Express</div></div>
+      <div class="sk"><div class="sk-t">Libraries</div><div class="sk-l">SpeechRecognition · pyttsx3 · PyAudio · Canvas API</div></div>
+      <div class="sk"><div class="sk-t">Tools</div><div class="sk-l">Git · GitHub · VS Code · Database Design</div></div>
     </div>
   </div>
 </section>
 
 <!-- PROJECTS -->
 <section id="projects">
-  <div class="section-label">02 — Projects</div>
-  <h2 class="section-title" style="margin-bottom: 4rem;">What I've <em>built</em></h2>
-  <div class="projects-list">
+  <div class="s-label">02 — Projects</div>
+  <h2 class="s-title" style="margin-bottom:4.5rem">What I've <em>built</em></h2>
 
-    <div class="project-item">
-      <div class="project-num">01</div>
-      <div>
-        <div class="project-tagline">Education Technology</div>
-        <h3 class="project-title">EduTrack</h3>
-        <p class="project-desc">A full-stack education tracking platform that allows students and educators to monitor learning progress, manage coursework, and surface insights through a clean dashboard interface. Built with a backend API serving a responsive frontend.</p>
-        <a href="https://github.com/iradukundabrenda" target="_blank" class="project-link">View on GitHub</a>
+  <!-- VOICE LIBRARY -->
+  <div class="project">
+    <div>
+      <div class="proj-num">01 / 03</div>
+      <div class="proj-subtitle">Voice Technology · Accessibility · Python</div>
+      <h3 class="proj-title">Voice Library</h3>
+      <p style="font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-style:italic;color:#AAA;margin-bottom:1.5rem;line-height:1.5">Voice-Activated Book Search</p>
+      <p class="proj-desc">This project was an exciting exploration into the intersection of <strong>voice recognition and web application development</strong>. My goal was to build an interactive system that allows users to search for books using their voice and receive instant audio feedback.</p>
+      <p class="proj-desc">The project implements a <strong>Flask-based web app</strong> that integrates SpeechRecognition for capturing spoken input and pyttsx3 for text-to-speech output. Users simply speak the name of a book — the system recognizes the query, searches the library database, and responds audibly with confirmation.</p>
+      <p class="proj-desc">Performance was evaluated by testing recognition accuracy, response time, and user experience smoothness. Challenges included handling variations in pronunciation, ensuring accurate speech-to-text conversion, and maintaining seamless audio playback. Despite these challenges, the project demonstrates a functional, user-friendly system that bridges voice technology with interactive web applications — with clear potential for expansion into fully voice-driven library or e-learning systems.</p>
+      <div class="proj-tech">
+        <span class="tech">Python</span><span class="tech">Flask</span><span class="tech">SpeechRecognition</span><span class="tech">pyttsx3</span><span class="tech">PyAudio</span><span class="tech">HTML/CSS</span><span class="tech">JavaScript</span>
       </div>
-      <div class="project-right">
-        <div class="project-tags">
-          <span class="tag">Full-Stack</span>
-          <span class="tag">React</span>
-          <span class="tag">Node.js</span>
-          <span class="tag">Database</span>
-          <span class="tag">Dashboard</span>
+      <a href="https://github.com/iradukundabrenda" target="_blank" class="proj-link">View on GitHub</a>
+    </div>
+    <div class="demo-wrap">
+      <div class="demo-bar">
+        <div class="dot r"></div><div class="dot y"></div><div class="dot g"></div>
+        <span class="demo-title">voice-library · interactive demo</span>
+      </div>
+      <div class="demo-body">
+        <div class="vl-books">
+          <div class="vl-book-row"><div class="mini-cover mc1" style="background:linear-gradient(135deg,#2A3A5A,#4A6A9A)"></div><div><div class="vl-br-title">Atomic Habits</div><div class="vl-br-auth">James Clear</div></div></div>
+          <div class="vl-book-row"><div class="mini-cover mc2" style="background:linear-gradient(135deg,#3A2A1A,#8A6A28)"></div><div><div class="vl-br-title">The Great Gatsby</div><div class="vl-br-auth">F. Scott Fitzgerald</div></div></div>
+          <div class="vl-book-row"><div class="mini-cover mc3" style="background:linear-gradient(135deg,#1A3A2A,#2A7A4A)"></div><div><div class="vl-br-title">Educated</div><div class="vl-br-auth">Tara Westover</div></div></div>
+          <div class="vl-book-row"><div class="mini-cover mc4" style="background:linear-gradient(135deg,#3A1A2A,#8A2A5A)"></div><div><div class="vl-br-title">Sapiens</div><div class="vl-br-auth">Yuval Noah Harari</div></div></div>
         </div>
-        <div class="project-relevance">
-          <div class="relevance-label">Relevance to Thim Ventures</div>
-          <div class="relevance-text">Demonstrates ability to architect and build complete full-stack systems with a backend — exactly the skillset needed to rebuild and maintain Thim's platform infrastructure.</div>
+        <div class="vl-search" id="vl-mic-btn" onclick="startVoiceDemo()">
+          <div class="vl-mic">
+            <svg viewBox="0 0 24 24"><path d="M12 1a4 4 0 0 1 4 4v6a4 4 0 0 1-8 0V5a4 4 0 0 1 4-4zm6 9a1 1 0 0 1 2 0 8 8 0 0 1-7 7.94V20h2a1 1 0 0 1 0 2H9a1 1 0 0 1 0-2h2v-2.06A8 8 0 0 1 4 10a1 1 0 0 1 2 0 6 6 0 0 0 12 0z"/></svg>
+          </div>
+          <span class="vl-text" id="vl-prompt">Click the mic — simulate a voice search</span>
+        </div>
+        <div class="vl-listening" id="vl-listening">
+          <div class="vl-wave"><span></span><span></span><span></span><span></span></div>
+          <span style="margin-left:.4rem">Listening… capturing voice input</span>
+        </div>
+        <div class="vl-result" id="vl-result">
+          <div class="vl-result-label">Book Found in Library</div>
+          <div class="vl-book-found">
+            <div class="vl-cover"><svg viewBox="0 0 24 24"><path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"/></svg></div>
+            <div class="vl-binfo"><div class="title" id="vl-book-title">Atomic Habits</div><div class="author" id="vl-book-auth">James Clear</div></div>
+          </div>
+        </div>
+        <div class="vl-response" id="vl-response"></div>
+        <div class="vl-status"><span class="status-dot"></span><span>Flask · SpeechRecognition · pyttsx3 active</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EDUTRACK -->
+  <div class="project">
+    <div>
+      <div class="proj-num">02 / 03</div>
+      <div class="proj-subtitle">Education Technology · Full-Stack</div>
+      <h3 class="proj-title">EduTrack</h3>
+      <p style="font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-style:italic;color:#AAA;margin-bottom:1.5rem;line-height:1.5">Student Progress Tracking Platform</p>
+      <p class="proj-desc">EduTrack is a <strong>full-stack education management platform</strong> built to give students and educators a clear, real-time view of learning progress. The goal was to replace scattered spreadsheets and manual tracking with a unified, data-driven dashboard.</p>
+      <p class="proj-desc">The backend exposes a structured <strong>REST API</strong> handling user authentication, course enrollment, progress updates, and activity logging. The frontend consumes this API to render a clean dashboard with per-course progress bars, activity feeds, and completion statistics.</p>
+      <p class="proj-desc">Building EduTrack required designing a <strong>relational database schema</strong> that handles many-to-many relationships between students and courses, alongside a clean separation between the API layer and the UI. The project deepened my thinking around data modelling, state synchronization, and building systems that scale gracefully as usage grows.</p>
+      <div class="proj-tech">
+        <span class="tech">React</span><span class="tech">Node.js</span><span class="tech">Express</span><span class="tech">REST API</span><span class="tech">Database Design</span><span class="tech">Dashboard UI</span>
+      </div>
+      <a href="https://github.com/iradukundabrenda" target="_blank" class="proj-link">View on GitHub</a>
+    </div>
+    <div class="demo-wrap">
+      <div class="demo-bar">
+        <div class="dot r"></div><div class="dot y"></div><div class="dot g"></div>
+        <span class="demo-title">edutrack · student dashboard</span>
+      </div>
+      <div class="demo-body">
+        <div class="et-header">
+          <div class="et-greet">Welcome back, <strong>Brenda</strong></div>
+          <div style="font-family:'DM Mono',monospace;font-size:.62rem;color:var(--gold)">Term 2 · 2026</div>
+        </div>
+        <div class="et-stats">
+          <div class="et-stat"><div class="et-stat-n">4</div><div class="et-stat-l">Courses</div></div>
+          <div class="et-stat"><div class="et-stat-n">73%</div><div class="et-stat-l">Avg Progress</div></div>
+          <div class="et-stat"><div class="et-stat-n">12</div><div class="et-stat-l">Tasks Done</div></div>
+        </div>
+        <div class="et-section-label">Course Progress</div>
+        <div class="et-course"><div class="et-progress-wrap"><div class="et-course-name">Web Development</div><div class="et-bar-bg"><div class="et-bar" style="width:87%"></div></div></div><div class="et-pct">87%</div></div>
+        <div class="et-course"><div class="et-progress-wrap"><div class="et-course-name">Database Systems</div><div class="et-bar-bg"><div class="et-bar" style="width:61%"></div></div></div><div class="et-pct">61%</div></div>
+        <div class="et-course"><div class="et-progress-wrap"><div class="et-course-name">Python &amp; Algorithms</div><div class="et-bar-bg"><div class="et-bar" style="width:74%"></div></div></div><div class="et-pct">74%</div></div>
+        <div class="et-course"><div class="et-progress-wrap"><div class="et-course-name">UX Design Principles</div><div class="et-bar-bg"><div class="et-bar" style="width:52%"></div></div></div><div class="et-pct">52%</div></div>
+        <div class="et-section-label" style="margin-top:1.1rem">Recent Activity</div>
+        <div class="et-activity">
+          <div class="et-act-row"><div class="et-act-dot"></div><div class="et-act-text">Submitted Assignment 4 — Web Dev</div><div class="et-act-time">2h ago</div></div>
+          <div class="et-act-row"><div class="et-act-dot"></div><div class="et-act-text">Completed Module 6 — Python</div><div class="et-act-time">Yesterday</div></div>
+          <div class="et-act-row"><div class="et-act-dot"></div><div class="et-act-text">Quiz passed — Database Normalization</div><div class="et-act-time">2 days ago</div></div>
         </div>
       </div>
     </div>
+  </div>
 
-    <div class="project-item">
-      <div class="project-num">02</div>
-      <div>
-        <div class="project-tagline">Accessibility &amp; Audio</div>
-        <h3 class="project-title">Voice Library</h3>
-        <p class="project-desc">An accessible audio content library that stores, indexes, and delivers voice recordings through a structured interface. Designed with users who benefit from audio content in mind — highlighting both technical build quality and empathetic product thinking.</p>
-        <a href="https://github.com/iradukundabrenda" target="_blank" class="project-link">View on GitHub</a>
+  <!-- PICASSO -->
+  <div class="project">
+    <div>
+      <div class="proj-num">03 / 03</div>
+      <div class="proj-subtitle">Creative Tools · Canvas API · Interactive UI</div>
+      <h3 class="proj-title">Picasso</h3>
+      <p style="font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-style:italic;color:#AAA;margin-bottom:1.5rem;line-height:1.5">Browser-Based Creative Drawing Application</p>
+      <p class="proj-desc">Picasso is a <strong>browser-based creative drawing tool</strong> built entirely with the HTML5 Canvas API. No plugins, no frameworks, no downloads — a full-featured paint application running entirely in the browser.</p>
+      <p class="proj-desc">The core challenge was building a <strong>responsive, stateful drawing engine</strong> — handling multiple tools (pencil, fill, eraser), colour selection, brush sizing, undo history, and real-time rendering while keeping the interface fluid and performant. Every tool required its own rendering logic, and managing canvas state without memory bloat demanded careful architectural thinking.</p>
+      <p class="proj-desc">Picasso demonstrates an ability to build <strong>complex, real-time interactive interfaces</strong> that go far beyond static pages. The kind of technical depth that doesn't show up in a screenshot but is immediately clear the moment you start drawing.</p>
+      <div class="proj-tech">
+        <span class="tech">HTML5 Canvas</span><span class="tech">JavaScript</span><span class="tech">CSS</span><span class="tech">State Management</span><span class="tech">Event Handling</span><span class="tech">Real-Time Rendering</span>
       </div>
-      <div class="project-right">
-        <div class="project-tags">
-          <span class="tag">Accessibility</span>
-          <span class="tag">Audio API</span>
-          <span class="tag">Storage</span>
-          <span class="tag">JavaScript</span>
+      <a href="https://github.com/iradukundabrenda" target="_blank" class="proj-link">View on GitHub</a>
+    </div>
+    <div class="demo-wrap">
+      <div class="demo-bar">
+        <div class="dot r"></div><div class="dot y"></div><div class="dot g"></div>
+        <span class="demo-title">picasso · draw on the canvas</span>
+      </div>
+      <div class="demo-body" style="padding:1rem">
+        <div class="pic-toolbar">
+          <button class="pic-tool active" id="pt-pencil" onclick="setTool('pencil')" title="Pencil">✏</button>
+          <button class="pic-tool" id="pt-eraser" onclick="setTool('eraser')" title="Eraser">◻</button>
+          <div style="width:1px;height:24px;background:var(--faint);margin:0 .2rem"></div>
+          <span class="pic-color sel" onclick="setColor('#C9A84C',this)" style="background:#C9A84C"></span>
+          <span class="pic-color" onclick="setColor('#F7F4EE',this)" style="background:#F7F4EE"></span>
+          <span class="pic-color" onclick="setColor('#4A9ADA',this)" style="background:#4A9ADA"></span>
+          <span class="pic-color" onclick="setColor('#DA4A4A',this)" style="background:#DA4A4A"></span>
+          <span class="pic-color" onclick="setColor('#4ADA7A',this)" style="background:#4ADA7A"></span>
+          <span class="pic-color" onclick="setColor('#DA7A4A',this)" style="background:#DA7A4A"></span>
+          <div class="pic-size"><span>Size</span><input type="range" min="2" max="28" value="6" id="pic-sz" step="1"/></div>
         </div>
-        <div class="project-relevance">
-          <div class="relevance-label">Relevance to Thim Ventures</div>
-          <div class="relevance-text">Shows depth in API integration and content management — skills directly applicable to building investor portal features and dynamic content delivery on Thim's platform.</div>
+        <div style="background:var(--ink);border:1px solid var(--faint);position:relative;overflow:hidden;cursor:crosshair">
+          <canvas id="pc" width="520" height="260" style="display:block;width:100%;height:260px"></canvas>
+        </div>
+        <div class="pic-actions">
+          <button class="pic-btn" onclick="undoDraw()">↩ Undo</button>
+          <button class="pic-btn" onclick="clearCanvas()">Clear</button>
+          <button class="pic-btn" onclick="downloadCanvas()">↓ Save PNG</button>
         </div>
       </div>
     </div>
-
-    <div class="project-item">
-      <div class="project-num">03</div>
-      <div>
-        <div class="project-tagline">Creative Tools</div>
-        <h3 class="project-title">Picasso</h3>
-        <p class="project-desc">A creative, browser-based tool that enables users to generate and manipulate visual content. Built to explore the intersection of interactivity and visual output — demonstrating comfort with complex UI state management and real-time rendering logic.</p>
-        <a href="https://github.com/iradukundabrenda" target="_blank" class="project-link">View on GitHub</a>
-      </div>
-      <div class="project-right">
-        <div class="project-tags">
-          <span class="tag">Canvas / WebGL</span>
-          <span class="tag">Interactive UI</span>
-          <span class="tag">State Management</span>
-          <span class="tag">Creative Tech</span>
-        </div>
-        <div class="project-relevance">
-          <div class="relevance-label">Relevance to Thim Ventures</div>
-          <div class="relevance-text">Proves capability in building polished, interactive front-end experiences — vital for Thim's investor-facing web presence where first impressions and UX quality directly impact trust.</div>
-        </div>
-      </div>
-    </div>
-
   </div>
 </section>
 
-<!-- THIM FIT -->
-<section id="thim">
-  <div class="section-label">03 — Why Thim</div>
-  <h2 class="section-title" style="margin-bottom: 3.5rem;">How I can add<br /><em>value immediately</em></h2>
-  <div class="fit-grid">
-    <div class="fit-card">
-      <div class="fit-icon">⬡</div>
-      <div class="fit-heading">Rebuild the Backend</div>
-      <div class="fit-body">Your Framer frontend is live but the platform needs a working backend to scale. I can architect and build APIs, databases, and server-side logic to bring the full platform to life — investor portals, founder submissions, data management.</div>
-    </div>
-    <div class="fit-card">
-      <div class="fit-icon">⬡</div>
-      <div class="fit-heading">Investor Portal Engineering</div>
-      <div class="fit-body">The member-only investor experience needs authentication, deal flow management, and personalised dashboards. I've built similar systems in EduTrack. I know how to make complex data feel simple and trustworthy to end users.</div>
-    </div>
-    <div class="fit-card">
-      <div class="fit-icon">⬡</div>
-      <div class="fit-heading">Full-Stack, Not Half-Stack</div>
-      <div class="fit-body">I don't just build UIs. I think from database schema through to the pixel. For a lean team like Thim, that's the difference between hiring one developer who ships end-to-end and needing two.</div>
-    </div>
+<!-- SHOWCASE -->
+<section id="showcase">
+  <div class="s-label">03 — Showcase</div>
+  <div class="showcase-intro">
+    <h2 class="s-title">I can build sites<br/><em>like this</em></h2>
+    <p>Below is a working example of a premium investment platform homepage — built entirely from scratch in HTML, CSS and JavaScript to demonstrate my ability to produce the kind of polished, brand-led web presence that modern companies need. No templates. No page builders. Pure code.</p>
+    <div class="built-badge">★ &nbsp;Built entirely from scratch · No templates used</div>
   </div>
-</section>
-
-<!-- APPLICATION DECK -->
-<section id="deck">
-  <div class="section-label">04 — Application Deck</div>
-  <h2 class="section-title" style="margin-bottom: 2.5rem;">My case for<br /><em>the internship</em></h2>
-
-  <div class="deck-frame">
-    <div class="deck-nav">
-      <div class="deck-nav-title">Brenda Iradukunda — Thim Ventures Internship Deck</div>
-      <div class="deck-nav-controls">
-        <button class="deck-btn" onclick="changeSlide(-1)">← Prev</button>
-        <span class="deck-counter" id="deck-counter">1 / 6</span>
-        <button class="deck-btn" onclick="changeSlide(1)">Next →</button>
+  <div class="thim-clone">
+    <div class="tc-nav">
+      <div class="tc-logo">Apex Ventures</div>
+      <div class="tc-links">
+        <span>Home</span><span>About</span><span>Investors</span><span>Founders</span><span>Contact</span>
       </div>
     </div>
-
-    <div class="deck-slides">
-      <!-- Slide 1 -->
-      <div class="slide active" id="slide-1">
-        <div class="slide-bg"></div>
-        <div class="slide-num">01 / 06 — Introduction</div>
-        <h2 class="slide-heading">Brenda Iradukunda<br /><em>Full-Stack Developer</em></h2>
-        <p class="slide-body">I'm a developer who builds complete products — frontend, backend, and everything between. I'm applying to intern at Thim Ventures because I believe <strong>strong technical infrastructure is what turns a great investment network into a scalable platform</strong>.</p>
-        <div class="stat-row">
-          <div class="stat-item">
-            <div class="stat-num">3</div>
-            <div class="stat-label">Deployed Projects</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-num">7</div>
-            <div class="stat-label">GitHub Repositories</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-num">1</div>
-            <div class="stat-label">Platform Ready to Build</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Slide 2 -->
-      <div class="slide" id="slide-2">
-        <div class="slide-bg"></div>
-        <div class="slide-num">02 / 06 — The Problem I Solve</div>
-        <h2 class="slide-heading">Thim has a platform.<br /><em>It needs a backbone.</em></h2>
-        <div class="slide-cols">
-          <div>
-            <div class="slide-point">
-              <div class="slide-point-title">Current State</div>
-              <div class="slide-point-body">A beautifully designed Framer website that represents the brand. No backend. No data persistence. No authenticated investor portal.</div>
-            </div>
-            <div class="slide-point">
-              <div class="slide-point-title">What's Missing</div>
-              <div class="slide-point-body">Member login, deal flow database, founder application processing, investor dashboard, email integrations, and dynamic content management.</div>
-            </div>
-          </div>
-          <div>
-            <div class="slide-point">
-              <div class="slide-point-title">What I'd Build</div>
-              <div class="slide-point-body">A full REST API backend, authentication layer, database schema for investors + founders, and CMS integration — engineered to scale with the club's growth.</div>
-            </div>
-            <div class="slide-point">
-              <div class="slide-point-title">Timeline</div>
-              <div class="slide-point-body">Core infrastructure in 4–6 weeks. Investor portal MVP in 8 weeks. Full platform with founder portal in 3 months.</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Slide 3 -->
-      <div class="slide" id="slide-3">
-        <div class="slide-bg"></div>
-        <div class="slide-num">03 / 06 — My Projects</div>
-        <h2 class="slide-heading">Proof of<br /><em>relevant experience</em></h2>
-        <div class="slide-cols">
-          <div>
-            <div class="slide-point">
-              <div class="slide-point-title">EduTrack → Member Management</div>
-              <div class="slide-point-body">Full-stack app tracking users, progress, and data. The same architecture applies to an investor CRM: member profiles, deal history, activity tracking.</div>
-            </div>
-            <div class="slide-point">
-              <div class="slide-point-title">Voice Library → Content Systems</div>
-              <div class="slide-point-body">Built a system for storing, indexing and serving content to users. Translates directly to Thim's media library and deal document management.</div>
-            </div>
-          </div>
-          <div>
-            <div class="slide-point">
-              <div class="slide-point-title">Picasso → Interactive UX</div>
-              <div class="slide-point-body">A real-time interactive UI with complex state. Shows I can build the kind of polished investor dashboard experience that high-net-worth users expect.</div>
-            </div>
-            <div class="slide-point">
-              <div class="slide-point-title">All Built From Scratch</div>
-              <div class="slide-point-body">Not tutorials. Not templates. Products I conceived, architected, built, and shipped — which is exactly the mode I'll work in at Thim.</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Slide 4 -->
-      <div class="slide" id="slide-4">
-        <div class="slide-bg"></div>
-        <div class="slide-num">04 / 06 — Technical Skills</div>
-        <h2 class="slide-heading">What I bring<br /><em>to the table</em></h2>
-        <div class="slide-cols">
-          <div>
-            <div class="slide-point">
-              <div class="slide-point-title">Backend Engineering</div>
-              <div class="slide-point-body">Node.js, Express, REST API design, authentication (JWT/OAuth), relational and document databases, server deployment.</div>
-            </div>
-            <div class="slide-point">
-              <div class="slide-point-title">Frontend Development</div>
-              <div class="slide-point-body">React, modern HTML/CSS, responsive design, component architecture, state management, and integration with backend APIs.</div>
-            </div>
-          </div>
-          <div>
-            <div class="slide-point">
-              <div class="slide-point-title">Product Thinking</div>
-              <div class="slide-point-body">I design with the user in mind. For an investor audience, that means clarity, trust signals, and friction-free experiences for high-value actions.</div>
-            </div>
-            <div class="slide-point">
-              <div class="slide-point-title">Fast Learner, Self-Starter</div>
-              <div class="slide-point-body">Everything in my portfolio was built through curiosity and iteration. I don't need to be hand-held — I need a direction and I'll figure out the path.</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Slide 5 -->
-      <div class="slide" id="slide-5">
-        <div class="slide-bg"></div>
-        <div class="slide-num">05 / 06 — What I Want to Learn</div>
-        <h2 class="slide-heading">What an internship<br /><em>at Thim means to me</em></h2>
-        <p class="slide-body" style="margin-bottom: 2rem;">I want exposure to how <strong>venture capital actually works</strong> — how deals are sourced, structured, and presented. I want to understand the investor mindset so I can build tools that truly serve it, not just technically functional ones. Working at the intersection of <strong>finance, startups, and technology</strong> is exactly where I want to grow.</p>
-        <div class="slide-cols">
-          <div class="slide-point">
-            <div class="slide-point-title">I'll give you</div>
-            <div class="slide-point-body">A developer who ships fast, takes ownership, and treats your platform like my own product. Reliable, communicative, and invested in Thim's growth.</div>
-          </div>
-          <div class="slide-point">
-            <div class="slide-point-title">I ask for</div>
-            <div class="slide-point-body">Mentorship on the business side. Real responsibility on real infrastructure. The chance to contribute to something that matters in the UK startup ecosystem.</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Slide 6 -->
-      <div class="slide" id="slide-6">
-        <div class="slide-bg"></div>
-        <div class="slide-num">06 / 06 — Contact</div>
-        <h2 class="slide-heading">Let's build<br /><em>Thim's platform together.</em></h2>
-        <p class="slide-body" style="margin-bottom: 3rem;">I'm ready to start immediately. I have the skills, the drive, and a clear understanding of what Thim needs technically. I'd love the opportunity to prove it in practice.</p>
-        <div style="display: flex; gap: 1.5rem; flex-wrap: wrap;">
-          <a href="https://github.com/iradukundabrenda" target="_blank" class="btn-primary">GitHub Profile</a>
-          <a href="mailto:brenda@email.com" class="btn-outline">Get in Touch</a>
-        </div>
+    <div class="tc-hero">
+      <div class="tc-hero-glow"></div>
+      <div class="tc-tag">Private Investor Club · Est. 2019</div>
+      <h2 class="tc-h1">Connecting Visionary Investors<br/>with <em>Tomorrow's Breakthroughs</em></h2>
+      <p class="tc-sub">We connect angels, high-net-worth individuals, and family offices with the most promising early-stage tech companies. Curated deal flow. Institutional rigour. Angel flexibility.</p>
+      <div class="tc-btns">
+        <button class="tc-btn-g">Join Our Investors</button>
+        <button class="tc-btn-o">Apply for Funding</button>
       </div>
     </div>
-
-    <div class="deck-progress">
-      <div class="deck-dot active" id="dot-1"></div>
-      <div class="deck-dot" id="dot-2"></div>
-      <div class="deck-dot" id="dot-3"></div>
-      <div class="deck-dot" id="dot-4"></div>
-      <div class="deck-dot" id="dot-5"></div>
-      <div class="deck-dot" id="dot-6"></div>
+    <div class="tc-stats">
+      <div class="tc-stat"><div class="tc-stat-n">£25M+</div><div class="tc-stat-l">Venture Capital Raised</div></div>
+      <div class="tc-stat"><div class="tc-stat-n">£2B</div><div class="tc-stat-l">Assets Under Management</div></div>
+      <div class="tc-stat"><div class="tc-stat-n">300+</div><div class="tc-stat-l">Investments Facilitated</div></div>
+      <div class="tc-stat"><div class="tc-stat-n">20+</div><div class="tc-stat-l">Years Experience</div></div>
+    </div>
+    <div class="tc-cards">
+      <div class="tc-card">
+        <div class="tc-card-icon">⬡</div>
+        <div class="tc-card-t">Curated Deal Flow</div>
+        <div class="tc-card-b">Access a pipeline of vetted early-stage companies, screened by our team and validated by sector specialists before they reach investors.</div>
+      </div>
+      <div class="tc-card">
+        <div class="tc-card-icon">⬡</div>
+        <div class="tc-card-t">Investor Community</div>
+        <div class="tc-card-b">Connect with angels, C-suite executives, and family offices across London, New York, Dubai, and beyond. A trusted network driving real decisions.</div>
+      </div>
+      <div class="tc-card">
+        <div class="tc-card-icon">⬡</div>
+        <div class="tc-card-t">Strategic Support</div>
+        <div class="tc-card-b">Beyond capital — we offer founders mentorship, warm introductions, and an investment committee that adds genuine expertise to every deal.</div>
+      </div>
+    </div>
+    <div class="tc-footer-strip">
+      <span class="tc-fs-text">© 2026 Apex Ventures · All rights reserved</span>
+      <span class="tc-fs-tag">Coded from scratch by Brenda Iradukunda</span>
     </div>
   </div>
 </section>
 
 <!-- CONTACT -->
 <section id="contact">
-  <div class="section-label">05 — Contact</div>
-  <h2 class="section-title">Ready to<br /><em>get started</em></h2>
-  <p class="contact-sub">I'm available immediately and excited to contribute to what Thim Ventures is building.</p>
-  <div class="contact-links">
-    <a href="mailto:brenda@email.com" class="contact-link primary">Send an Email</a>
-    <a href="https://github.com/iradukundabrenda" target="_blank" class="contact-link">GitHub</a>
-    <a href="https://linkedin.com" target="_blank" class="contact-link">LinkedIn</a>
+  <div class="s-label">04 — Contact</div>
+  <h2 class="s-title">Let's work<br/><em>together</em></h2>
+  <p class="contact-sub">I'm open to internships, junior developer roles, and project collaborations. If you're building something, I'd love to be part of it.</p>
+  <div class="contact-row">
+    <a href="mailto:brenda@email.com" class="cl primary">Send an Email</a>
+    <a href="https://github.com/iradukundabrenda" target="_blank" class="cl">GitHub</a>
+    <a href="https://linkedin.com" target="_blank" class="cl">LinkedIn</a>
   </div>
 </section>
 
 <footer>
-  <span class="footer-copy">© 2026 Brenda Iradukunda</span>
-  <span class="footer-tag">Full-Stack Developer · Open to Internships</span>
+  <span class="fc">© 2026 Brenda Iradukunda · Developer Portfolio</span>
+  <span class="ft">Built with code, not templates</span>
 </footer>
 
 <script>
-  let currentSlide = 1;
-  const totalSlides = 6;
+/* ── VOICE LIBRARY ── */
+const vlBooks=[
+  {title:'Atomic Habits',author:'James Clear',resp:'Found "Atomic Habits" by James Clear. Available in your library. Playing audio confirmation now.'},
+  {title:'The Great Gatsby',author:'F. Scott Fitzgerald',resp:'Found "The Great Gatsby" in the fiction collection. Audio summary ready.'},
+  {title:'Educated',author:'Tara Westover',resp:'"Educated" located — memoir section. Highly rated by your reading group.'},
+  {title:'Sapiens',author:'Yuval Noah Harari',resp:'"Sapiens" found in non-fiction. Audio version also available.'}
+];
+let vlIdx=0;
+function startVoiceDemo(){
+  const btn=document.getElementById('vl-mic-btn');
+  const lis=document.getElementById('vl-listening');
+  const res=document.getElementById('vl-result');
+  const resp=document.getElementById('vl-response');
+  btn.style.display='none';lis.style.display='flex';res.style.display='none';resp.style.display='none';
+  setTimeout(()=>{
+    lis.style.display='none';
+    const b=vlBooks[vlIdx%vlBooks.length];
+    document.getElementById('vl-book-title').textContent=b.title;
+    document.getElementById('vl-book-auth').textContent=b.author;
+    res.style.display='block';resp.style.display='block';
+    resp.textContent='🔊 '+b.resp;
+    vlIdx++;
+    btn.style.display='flex';
+    document.getElementById('vl-prompt').textContent='Search again — try another book';
+  },2400);
+}
 
-  function changeSlide(dir) {
-    const prev = currentSlide;
-    currentSlide = Math.max(1, Math.min(totalSlides, currentSlide + dir));
-    if (prev === currentSlide) return;
-
-    document.getElementById('slide-' + prev).classList.remove('active');
-    document.getElementById('slide-' + currentSlide).classList.add('active');
-    document.getElementById('dot-' + prev).classList.remove('active');
-    document.getElementById('dot-' + currentSlide).classList.add('active');
-    document.getElementById('deck-counter').textContent = currentSlide + ' / ' + totalSlides;
-  }
-
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') changeSlide(1);
-    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') changeSlide(-1);
-  });
+/* ── PICASSO ── */
+const canvas=document.getElementById('pc');
+const ctx=canvas.getContext('2d');
+let painting=false,tool='pencil',color='#C9A84C',brushSize=6;
+const history=[];
+function saveState(){if(history.length>30)history.shift();history.push(canvas.toDataURL())}
+function getPos(e){
+  const r=canvas.getBoundingClientRect();
+  const scx=canvas.width/r.width,scy=canvas.height/r.height;
+  if(e.touches)return{x:(e.touches[0].clientX-r.left)*scx,y:(e.touches[0].clientY-r.top)*scy};
+  return{x:(e.clientX-r.left)*scx,y:(e.clientY-r.top)*scy};
+}
+canvas.addEventListener('mousedown',e=>{saveState();painting=true;const p=getPos(e);ctx.beginPath();ctx.moveTo(p.x,p.y)});
+canvas.addEventListener('mousemove',e=>{
+  if(!painting)return;const p=getPos(e);
+  ctx.lineWidth=tool==='eraser'?brushSize*2.5:brushSize;
+  ctx.lineCap='round';ctx.lineJoin='round';
+  ctx.strokeStyle=tool==='eraser'?'#0D0D0D':color;
+  ctx.lineTo(p.x,p.y);ctx.stroke();ctx.beginPath();ctx.moveTo(p.x,p.y);
+});
+canvas.addEventListener('mouseup',()=>{painting=false});
+canvas.addEventListener('mouseleave',()=>{painting=false});
+canvas.addEventListener('touchstart',e=>{e.preventDefault();saveState();painting=true;const p=getPos(e);ctx.beginPath();ctx.moveTo(p.x,p.y)},{passive:false});
+canvas.addEventListener('touchmove',e=>{e.preventDefault();if(!painting)return;const p=getPos(e);ctx.lineWidth=tool==='eraser'?brushSize*2.5:brushSize;ctx.lineCap='round';ctx.lineJoin='round';ctx.strokeStyle=tool==='eraser'?'#0D0D0D':color;ctx.lineTo(p.x,p.y);ctx.stroke();ctx.beginPath();ctx.moveTo(p.x,p.y)},{passive:false});
+canvas.addEventListener('touchend',()=>{painting=false});
+document.getElementById('pic-sz').addEventListener('input',e=>{brushSize=parseInt(e.target.value)});
+function setTool(t){
+  tool=t;
+  ['pencil','eraser'].forEach(id=>{const el=document.getElementById('pt-'+id);if(el)el.classList.toggle('active',id===t)});
+}
+function setColor(c,el){
+  color=c;
+  document.querySelectorAll('.pic-color').forEach(e=>e.classList.remove('sel'));
+  el.classList.add('sel');
+  if(tool==='eraser')setTool('pencil');
+}
+function undoDraw(){
+  if(!history.length)return;
+  const img=new Image();img.src=history.pop();
+  img.onload=()=>{ctx.clearRect(0,0,canvas.width,canvas.height);ctx.drawImage(img,0,0)};
+}
+function clearCanvas(){saveState();ctx.clearRect(0,0,canvas.width,canvas.height);drawHint()}
+function downloadCanvas(){const a=document.createElement('a');a.download='picasso-artwork.png';a.href=canvas.toDataURL();a.click()}
+function drawHint(){
+  ctx.save();ctx.globalAlpha=.35;
+  ctx.font='13px DM Sans,sans-serif';ctx.fillStyle='#666';
+  ctx.textAlign='center';
+  ctx.fillText('Click and drag to draw · Change colours and brush size above',canvas.width/2,canvas.height/2);
+  ctx.restore();
+}
+drawHint();
 </script>
 </body>
 </html>
